@@ -1,4 +1,7 @@
 package org;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 /*
@@ -10,6 +13,7 @@ Different ways to create POST request body
 */
 
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -61,9 +65,9 @@ void PostRequestUsingOrgJSON(){
     given()
             .contentType("application/json")
             .body(data.toString())
-            .when()
+    .when()
             .post("http://localhost:3000/students")
-            .then()
+    .then()
             .statusCode(201)
             .body("name",equalTo("Greg"))
             .body("age",equalTo("19"))
@@ -73,11 +77,61 @@ void PostRequestUsingOrgJSON(){
             .header("Content-Type","application/json")
             .log().all();
 }
+
+// POST request using POJO class
+//    @Test (priority = 1)
+    void testPostUsingPOJO(){
+        Pojo_PostRequest data = new Pojo_PostRequest();
+        data.setName("Arman");
+        data.setAge("27");
+        data.setGrade("4th year");
+        String subjectsArr[] = {"C","C++"};
+        data.setSubjects(subjectsArr);
+
+        given()
+                .contentType("application/json")
+                .body(data)
+        .when()
+                .post("http://localhost:3000/students")
+        .then()
+                .statusCode(201)
+                .body("name",equalTo("Arman"))
+                .body("age",equalTo("27"))
+                .body("grade",equalTo("4th year"))
+                .body("subjects[0]",equalTo("C"))
+                .body("subjects[1]",equalTo("C++"))
+                .header("Content-Type","application/json")
+                .log().all();
+    }
+    // POST request using external Json file
+    @Test (priority = 1)
+    void testPostUsingExternalJsonFile() throws FileNotFoundException {
+
+        File f = new File(".\\body.json");
+        FileReader fr= new FileReader(f);
+        JSONTokener jt = new JSONTokener(fr);
+        JSONObject data = new JSONObject(jt);
+
+        given()
+                .contentType("application/json")
+                .body(data.toString())
+        .when()
+                .post("http://localhost:3000/students")
+        .then()
+                .statusCode(201)
+                .body("name",equalTo("Rampage Jackson"))
+                .body("age",equalTo("34"))
+                .body("grade",equalTo("3rd Job"))
+                .body("subjects[0]",equalTo("German"))
+                .body("subjects[1]",equalTo("Spanish"))
+                .header("Content-Type","application/json")
+                .log().all();
+    }
     @Test (priority = 2)
     void deleteRecord(){
         given()
         .when()
-                .delete("http://localhost:3000/students/4c59")
+                .delete("http://localhost:3000/students/743c")
         .then()
                 .statusCode(200);
     }
