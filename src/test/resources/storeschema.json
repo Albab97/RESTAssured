@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome9",
+    "definitions": {
+        "Welcome9": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "book": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Book"
+                    }
+                }
+            },
+            "required": [
+                "book"
+            ],
+            "title": "Welcome9"
+        },
+        "Book": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "isbn": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "author",
+                "category",
+                "isbn",
+                "price",
+                "title"
+            ],
+            "title": "Book"
+        }
+    }
+}
