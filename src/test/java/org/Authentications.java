@@ -46,7 +46,7 @@ public class Authentications {
     }
     @Test
     void bearerTokenAuth(){
-        String bearerToken = "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";
+        String bearerToken = "SECRET_TOKEN";
 //        given()
 //                .header("Authorization","Bearer "+bearerToken)
 //                .when()
@@ -78,7 +78,7 @@ public class Authentications {
     @Test
     void oauth2(){
         given()
-                .auth().oauth2("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")
+                .auth().oauth2("SECRET_TOKEN")
                 .when()
                 .get("https://api.github.com/user/repos")
                 .then()
@@ -97,7 +97,7 @@ public class Authentications {
 //                .log().all();
 //        Method 2
             given()
-                    .queryParam("appid","9693db11c0f8b84631d2e6e33dfe219b")
+                    .queryParam("appid","REAL_API_KEY")
                     .pathParam("mypath","data/2.5/weather")
                     .queryParam("q","Delhi")
                     .when()
