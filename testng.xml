@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/HP/IdeaProjects/RestAssured_Project/src/test/java/chaining">
+        <classes>
+            <class name="chaining.CreateUser">
+                <methods>
+                    <include name="testCreateUser"/>
+                </methods>
+            </class>
+            <class name="chaining.GetUser">
+                <methods>
+                    <include name="testGetUser"/>
+                </methods>
+            </class>
+            <class name="chaining.UpdateUser">
+                <methods>
+                    <include name="testUpdateUser"/>
+                </methods>
+            </class>
+            <class name="chaining.DeleteUser">
+                <methods><include name="testDeleteUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

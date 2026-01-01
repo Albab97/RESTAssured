@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="Test1">
+        <classes>
+            <class name="chaining.CreateUser"/>
+        </classes>
+    </test>
+    <test name="Test2">
+        <classes>
+            <class name="chaining.GetUser"/>
+        </classes>
+    </test>
+    <test name="Test3">
+        <classes>
+            <class name="chaining.UpdateUser"/>
+        </classes>
+    </test>
+    <test name="Test4">
+        <classes>
+            <class name="chaining.DeleteUser"/>
+        </classes>
+    </test>
+</suite>
